@@ -6,14 +6,15 @@ import java.awt.event.ActionListener;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Subsection extends JPanel {
+public class FrequencyPanel extends JPanel {
+    // treat as "mini" frame, add everything to panel, that way when i add the panel to frame it should be fine
     private JTable table;
     private DefaultTableModel model;
     private Font chineseFont = new Font("Noto Sans CJK SC", Font.BOLD, 24);
     private JScrollPane scrollPane;
 
 
-    public Subsection(){
+    public FrequencyPanel(){
         // Text Area
         /*
         JTextArea outputText = new JTextArea();

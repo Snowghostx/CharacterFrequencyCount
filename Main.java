@@ -19,13 +19,13 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        MainFrame mainFrame = new MainFrame();
-        FrequencyCountPanel subsection1 = new FrequencyCountPanel();
-        mainFrame.add(subsection1);
-        mainFrame.setVisible(true);
+        MainFrame mFrame = new MainFrame();
+        FrequencyPanel frequencyPanel = new FrequencyPanel();
+        mFrame.makeMenuItem("Item 1","Item 1");
+        mFrame.makeMenuItem("Item 2","Item 2");
 
         File txtFile = new File("src/characters.txt");
-        subsection1.createFrequencyCount(readFile(txtFile));
+
 
 
 

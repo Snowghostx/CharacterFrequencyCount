@@ -1,5 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +11,7 @@ public class MainFrame extends JFrame{
     // menu items should be addable so have a add() button i think.
 
     public JMenuBar mb;
-
+    public JMenu menu;
 
     public MainFrame() {
         try{
@@ -26,6 +28,8 @@ public class MainFrame extends JFrame{
         // Menu bar
         mb = new JMenuBar();
         setJMenuBar(mb);
+        this.menu = new JMenu("Options");
+        mb.add(menu);
 
         // Icon
         try {
@@ -40,7 +44,31 @@ public class MainFrame extends JFrame{
         setVisible(true);
     };
 
-    private void setUpPanel(Subsection ) {
+    public void setUpPanel(JPanel givenPanel,String title){
+        // Adding Panel
+        add(givenPanel);
+
+        // Adding corresponding menu Item
+        JMenuItem menuItem = new JMenuItem(title);
+        this.menu.add(menuItem);
 
     }
+
+    // Test
+    public void makeMenuItem(String title,String actionContent){
+        JMenuItem menuItem = new JMenuItem(title);
+        this.menu.add(menuItem);
+
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,actionContent);
+            }
+        });
+    }
+
+
+
+
+
 }
