@@ -24,6 +24,7 @@ public class Main {
         mFrame.makeMenuItem("Item 1","Item 1");
         mFrame.makeMenuItem("Item 2","Item 2");
 
+        mFrame.makeMenuItemAndPanelAction("FreqPanel",frequencyPanel);
         File txtFile = new File("src/characters.txt");
 
 
