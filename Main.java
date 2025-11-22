@@ -19,16 +19,16 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Look and Feel
-        try{
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
+        MainFrame mainFrame = new MainFrame();
+        FrequencyCountPanel subsection1 = new FrequencyCountPanel();
+        mainFrame.add(subsection1);
+        mainFrame.setVisible(true);
 
         File txtFile = new File("src/characters.txt");
-        createProgram(readFile(txtFile));
+        subsection1.createFrequencyCount(readFile(txtFile));
+
+
+
 
     }
 
@@ -145,13 +145,7 @@ public class Main {
         frame.add(scrollPane);
     }
 
-    /**
-     * Goal is to make it so that user can input what "minimum" number they want and any character with a frequency above that
-     * will be shown.
-     */
-    public static void specificFrequency(TreeMap<Character,Integer> freqCount){
 
-    }
 
 
 }

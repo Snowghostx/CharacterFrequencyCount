@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Subsection {
-    private JScrollPane scrollPane;
+public class Subsection extends JPanel {
     private JTable table;
     private DefaultTableModel model;
-    private String[] ColumnLabels;
     private Font chineseFont = new Font("Noto Sans CJK SC", Font.BOLD, 24);
+    private JScrollPane scrollPane;
+
 
     public Subsection(){
         // Text Area
@@ -22,18 +22,19 @@ public class Subsection {
         outputText.setWrapStyleWord(true);
         //JScrollPane scrollPane = new JScrollPane(outputText);
         */
-        // Table Idea
-        ColumnLabels = new String[]{"Character", "Frequency Count"};
-        model = new DefaultTableModel(ColumnLabels,0);
+        setLayout(new BorderLayout());
+
+        String[] ColumnLabels = {"Character", "Frequency Count"};
+        model = new DefaultTableModel(ColumnLabels, 0);
         table = new JTable(model);
+
         table.setRowHeight(35);
         table.setFont(chineseFont);
         table.getTableHeader().setFont(chineseFont);
 
-        // Scroll Pane
         scrollPane = new JScrollPane(table);
-        scrollPane.setVisible(false); // start out off so once generate is hit it will turn on.
 
+        add(scrollPane, BorderLayout.CENTER);
     }
 
     public void createFrequencyCount(TreeMap<Character,Integer> freqCount){
@@ -68,5 +69,8 @@ public class Subsection {
                 JOptionPane.showMessageDialog(null, "KLK WAWAWA","Hola",JOptionPane.INFORMATION_MESSAGE,domRepFlag);
             }
         });
+        scrollPane.add(mItem);
+        scrollPane.add(mItem2);
     }
+
 }
