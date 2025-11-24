@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +15,9 @@ public class FrequencyPanel extends JPanel {
     private Font chineseFont = new Font("Noto Sans CJK SC", Font.BOLD, 24);
     private JScrollPane scrollPane;
 
+    public JButton generate;
+
+
 
     public FrequencyPanel(){
         // Text Area
@@ -24,27 +29,35 @@ public class FrequencyPanel extends JPanel {
         //JScrollPane scrollPane = new JScrollPane(outputText);
         */
         setLayout(new BorderLayout());
+        setBorder(new EmptyBorder(20,20,20,20));
 
         String[] ColumnLabels = {"Character", "Frequency Count"};
         model = new DefaultTableModel(ColumnLabels, 0);
-        table = new JTable(model);
 
+        table = new JTable(model);
         table.setRowHeight(35);
         table.setFont(chineseFont);
         table.getTableHeader().setFont(chineseFont);
 
         scrollPane = new JScrollPane(table);
 
+        // Button Panel (place options down here)
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        // Buttons (will make function createButton() later so only the actions have to be here)
+        generate = new JButton("Generate");
+        generate.setPreferredSize(new Dimension(100, 30));
+        buttonPanel.add(generate);
+
+
+        add(buttonPanel, BorderLayout.PAGE_END);
         add(scrollPane, BorderLayout.CENTER);
     }
 
     public void createFrequencyCount(TreeMap<Character,Integer> freqCount){
         // this just makes it so a button does it but tbh the contents will do it automatically outside of action
         // also it's sorted by character cuz it's a treemap now not a regular hashmap
-
-        // Menu Item Button
-        JMenuItem mItem = new JMenuItem("Generate");
-        mItem.addActionListener(new ActionListener() {
+        generate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 scrollPane.setVisible(true); // turn it on
@@ -62,16 +75,6 @@ public class FrequencyPanel extends JPanel {
                 }
             }
         });
-        JMenuItem mItem2 = new JMenuItem("Dominication");
-        mItem2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ImageIcon domRepFlag = new ImageIcon("images/Dominican-Republic-icon.png");
-                JOptionPane.showMessageDialog(null, "KLK WAWAWA","Hola",JOptionPane.INFORMATION_MESSAGE,domRepFlag);
-            }
-        });
-        scrollPane.add(mItem);
-        scrollPane.add(mItem2);
     }
 
 }

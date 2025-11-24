@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -19,6 +20,7 @@ public class MainFrame extends JFrame{
         } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
+
         // Frame
         setTitle("Chinese Learning");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // make sure "close" closes
@@ -55,6 +57,11 @@ public class MainFrame extends JFrame{
     }
 
     // Test
+    /**
+     * Originally a test to see if i could make menu items and have attached functions to them consistently.
+     * @param title
+     * @param actionContent
+     */
     public void makeMenuItem(String title,String actionContent){
         JMenuItem menuItem = new JMenuItem(title);
         this.menu.add(menuItem);
@@ -67,6 +74,11 @@ public class MainFrame extends JFrame{
         });
     }
 
+    /**
+     * Used to make any panel onto the mainframe
+     * @param title
+     * @param givenPanel
+     */
     public void makeMenuItemAndPanelAction(String title,JPanel givenPanel){
         JMenuItem menuItem = new JMenuItem(title);
         this.menu.add(menuItem);
@@ -79,6 +91,29 @@ public class MainFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 givenPanel.setVisible(!givenPanel.isVisible());
+            }
+        });
+    }
+
+    /**
+     * Used only for homepanel
+     * @param title
+     * @param givenPanel
+     */
+    public void createHomePanel(String title, JPanel givenPanel){
+        JMenuItem menuItem = new JMenuItem(title);
+        this.menu.add(menuItem);
+
+        // Add your panel to the frame
+        add(givenPanel);
+        givenPanel.setVisible(true); // true cuz it's the home panel
+
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(givenPanel.isVisible() == false){
+                    givenPanel.setVisible(true);
+                }
             }
         });
     }
