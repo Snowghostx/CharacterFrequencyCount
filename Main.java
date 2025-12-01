@@ -22,6 +22,7 @@ public class Main {
         MainFrame mFrame = new MainFrame();
         FrequencyPanel frequencyPanel = new FrequencyPanel();
         HomePanel homePanel = new HomePanel();
+        InputStudyPanel studyPanel1 = new InputStudyPanel();
 
         mFrame.makeMenuItem("Item 1","Item 1");
         mFrame.makeMenuItem("Item 2","Item 2");
@@ -29,12 +30,16 @@ public class Main {
         mFrame.makeMenuItemAndPanelAction("FreqPanel",frequencyPanel);
         mFrame.createHomePanel("Home",homePanel);
          */
+        // Any Set Up
         File txtFile = new File("src/characters.txt");
-        frequencyPanel.createFrequencyCount(readFile((txtFile)));
+        frequencyPanel.createFrequencyCount(readFile(txtFile));
+        frequencyPanel.frequencyCountSortedByFreq(readFile(txtFile));
 
+        // Final Visual Placements
         TabPanelHolder tabHolder = new TabPanelHolder();
         tabHolder.add("Home",homePanel);
         tabHolder.add("Freq",frequencyPanel);
+        tabHolder.add("Input Study",studyPanel1);
         mFrame.add(tabHolder);
         mFrame.revalidate();
         mFrame.repaint();
