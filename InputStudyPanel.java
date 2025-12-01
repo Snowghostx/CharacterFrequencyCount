@@ -21,6 +21,24 @@ public class InputStudyPanel extends JPanel {
         setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Character Label
+        JLabel currentCharacter = createCharacterLabel();
+
+        // Input text
+        JTextField textField = createTextField();
+
+        // Button
+        JButton submitButton = createSubmitButton();
+
+        //----------------------------------------------------------------------------------
+        add(currentCharacter);
+        add(Box.createVerticalStrut(20));
+        add(textField);
+        add(Box.createVerticalStrut(20));
+        add(submitButton);
+    }
+
+    private static JLabel createCharacterLabel(){
+        // Character Label
         JLabel currentCharacter = new JLabel("...");
         currentCharacter.setAlignmentX(CENTER_ALIGNMENT);
         currentCharacter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -29,46 +47,7 @@ public class InputStudyPanel extends JPanel {
         currentCharacter.setFont(new Font("Noto Sans CJK SC", Font.BOLD, 50));
         currentCharacter.setBorder(new BevelBorder(1));
 
-        // Input text
-        JTextField textField = new JTextField("type pinyin here");
-        textField.setForeground(Color.GRAY);
-        textField.setAlignmentX(CENTER_ALIGNMENT); // Centers the COMPONENT
-        textField.setHorizontalAlignment(SwingConstants.CENTER); // Centers the TEXT;
-        textField.setPreferredSize(new Dimension(200,30));
-        textField.setMaximumSize(textField.getPreferredSize()); // needed for boxlayout
-
-        textField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                // Remove placeholder text when the user clicks into the text field
-                if (textField.getText().equals("type pinyin here")) {
-                    textField.setText("");
-                    textField.setForeground(Color.BLACK);  // Change text color back to black
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                // If the text field is empty, set the placeholder text back
-                if (textField.getText().isEmpty()) {
-                    textField.setText("type pinyin here");
-                    textField.setForeground(Color.GRAY);  // Placeholder color
-                }
-            }
-        });
-
-        // Button
-        JButton submitButton = new JButton("Submit");
-        submitButton.setAlignmentX(CENTER_ALIGNMENT);
-        submitButton.setPreferredSize(new Dimension(400, 50));
-        submitButton.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        //----------------------------------------------------------------------------------
-        add(currentCharacter);
-        add(Box.createVerticalStrut(20));
-        add(textField);
-        add(Box.createVerticalStrut(20));
-        add(submitButton);
+        return currentCharacter;
     }
 
     private static JTextField createTextField(){
@@ -101,6 +80,16 @@ public class InputStudyPanel extends JPanel {
         });
 
         return textField;
+    }
+
+    private static JButton createSubmitButton(){
+        // Button
+        JButton submitButton = new JButton("Submit");
+        submitButton.setAlignmentX(CENTER_ALIGNMENT);
+        submitButton.setPreferredSize(new Dimension(400, 50));
+        submitButton.setFont(new Font("Arial", Font.PLAIN, 16));
+
+        return submitButton;
     }
 
 
