@@ -9,6 +9,6 @@ use this program provides is still helpful in prioritization of characters to le
 This program was also created in earlier experience with Java during basic Data Structure
 and Algorithm classes.
 ## Removed Features
-* InputStudyPanel
-* TableStudyPanel
-* CCharacter
+* InputStudyPanel Class
+* TableStudyPanel Class
+* CCharacter Class
