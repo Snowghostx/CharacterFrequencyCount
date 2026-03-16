@@ -1,4 +1,4 @@
-# Chinese Character Frequency Count
+# Chinese Subtitle Character Frequency Count
 The purpose of this program was to take a subtitle file (vtt,srt,txt) and list every
 chinese character separately with a corresponding count for each appearance it makes.
 
