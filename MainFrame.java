@@ -74,25 +74,17 @@ public class MainFrame extends JFrame{
         });
     }
 
+
     /**
      * Used to make any panel onto the mainframe
      * @param title
-     * @param givenPanel
+     * @param action
      */
-    public void makeMenuItemAndPanelAction(String title,JPanel givenPanel){
+    public void makeMenuItemWithAction(String title,ActionListener action){
         JMenuItem menuItem = new JMenuItem(title);
         this.menu.add(menuItem);
 
-        // Add your panel to the frame
-        add(givenPanel);
-        givenPanel.setVisible(false);
-
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                givenPanel.setVisible(!givenPanel.isVisible());
-            }
-        });
+        menuItem.addActionListener(action);
     }
 
     /**

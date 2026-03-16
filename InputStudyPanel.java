@@ -28,6 +28,7 @@ public class InputStudyPanel extends JPanel {
 
         // Button
         JButton submitButton = createSubmitButton();
+        
 
         //----------------------------------------------------------------------------------
         add(currentCharacter);
@@ -92,6 +93,7 @@ public class InputStudyPanel extends JPanel {
         return submitButton;
     }
 
+    //private static boolean checkUserInput(//character's pinyin,//user's input)
 
 
 }

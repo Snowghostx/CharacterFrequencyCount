@@ -11,7 +11,7 @@ public class HomePanel extends JPanel {
 
 
 
-    public HomePanel(){
+    public HomePanel() {
         // Text Area
         /*
         JTextArea outputText = new JTextArea();
@@ -22,7 +22,7 @@ public class HomePanel extends JPanel {
         */
         // functions ARE the panel already
         setLayout(new BorderLayout());
-        setBorder(new EmptyBorder(20,20,20,20));
+        setBorder(new EmptyBorder(20, 20, 20, 20));
 
         JLabel label = new JLabel("Welcome.");
         label.setPreferredSize(new Dimension(200, 50));
@@ -31,9 +31,6 @@ public class HomePanel extends JPanel {
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setVerticalAlignment(SwingConstants.CENTER);
         add(label);
-
-
     }
-
 
 }

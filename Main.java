@@ -1,10 +1,6 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -20,17 +16,36 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         MainFrame mFrame = new MainFrame();
+        TableStudyPanel tableStudyPanel = new TableStudyPanel();
         FrequencyPanel frequencyPanel = new FrequencyPanel();
         HomePanel homePanel = new HomePanel();
         InputStudyPanel studyPanel1 = new InputStudyPanel();
 
-        mFrame.makeMenuItem("Item 1","Item 1");
-        mFrame.makeMenuItem("Item 2","Item 2");
-        /*
-        mFrame.makeMenuItemAndPanelAction("FreqPanel",frequencyPanel);
-        mFrame.createHomePanel("Home",homePanel);
-         */
+        mFrame.makeMenuItem("Dialog 1","idk bruh");
+        mFrame.makeMenuItem("Dialog 2","um...");
+
+
         // Any Set Up
+        CCharacter[] currentCharacterList;
+        File vocabListTextFile;
+        mFrame.makeMenuItemWithAction("Select Vocab List", new ActionListener(){
+            @Override public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(mFrame);
+                if(returnValue == JFileChooser.APPROVE_OPTION){
+                    File selectedFile = fileChooser.getSelectedFile();
+                    // implement check if txt file
+                    System.out.println("File Selected: " + selectedFile.getAbsolutePath());
+                } else {
+                    System.out.println("No file selected.");
+                }
+
+                JOptionPane.showMessageDialog(null,"TESTING");
+
+            }
+        });
+
+
         File txtFile = new File("src/characters.txt");
         frequencyPanel.createFrequencyCount(readFile(txtFile));
         frequencyPanel.frequencyCountSortedByFreq(readFile(txtFile));
@@ -40,6 +55,7 @@ public class Main {
         tabHolder.add("Home",homePanel);
         tabHolder.add("Freq",frequencyPanel);
         tabHolder.add("Input Study",studyPanel1);
+        tabHolder.add("Table Study", tableStudyPanel);
         mFrame.add(tabHolder);
         mFrame.revalidate();
         mFrame.repaint();
@@ -80,6 +96,26 @@ public class Main {
         }
         return freqCount;
     }
+
+    /*public static TreeMap<CCharacter, String> processToCharacterMap(File file){
+        TreeMap<CCharacter, String> characterMap = new TreeMap<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while((line = reader.readLine()) != null) {
+                String[] processedLine = line.split(";");
+                System.out.println(processedLine[0]);
+                System.out.println(processedLine[1]);
+                CCharacter newCharacter = new CCharacter(processedLine[0],processedLine[1],processedLine[2]);
+
+                characterMap.put(newCharacter,);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"There is no text file.");
+        }
+        return characterMap;
+    }*/
 
 
 
