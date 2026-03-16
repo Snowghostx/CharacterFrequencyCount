@@ -8,3 +8,4 @@ use this program provides is still helpful in prioritization of characters to le
 ## Removed Features
 * InputStudyPanel
 * TableStudyPanel
+* CCharacter
