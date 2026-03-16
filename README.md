@@ -5,6 +5,9 @@ chinese character separately with a corresponding count for each appearance it m
 This program has features cut down because I've learned that there are much better
 frameworks to accomplish the end goal I wanted for this project. Despite this shift, the
 use this program provides is still helpful in prioritization of characters to learn.
+
+This program was also created in earlier experience with Java during basic Data Structure
+and Algorithm classes.
 ## Removed Features
 * InputStudyPanel
 * TableStudyPanel
