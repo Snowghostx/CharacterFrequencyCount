@@ -12,50 +12,48 @@ import java.util.*;
  * Given a text with a list of characters, (usually i'm taking a .srt file and putting it in a txt file)
  * it will count the frequency of each character in the list.
  */
-
 public class Main {
     public static void main(String[] args) {
+        // Create Elements of the UI
         MainFrame mFrame = new MainFrame();
-        TableStudyPanel tableStudyPanel = new TableStudyPanel();
         FrequencyPanel frequencyPanel = new FrequencyPanel();
         HomePanel homePanel = new HomePanel();
-        InputStudyPanel studyPanel1 = new InputStudyPanel();
 
-        mFrame.makeMenuItem("Dialog 1","idk bruh");
-        mFrame.makeMenuItem("Dialog 2","um...");
-
-
-        // Any Set Up
-        CCharacter[] currentCharacterList;
-        File vocabListTextFile;
+        // Create Objects
+        // Set Menu Action
         mFrame.makeMenuItemWithAction("Select Vocab List", new ActionListener(){
             @Override public void actionPerformed(ActionEvent e) {
+                // Reset visual table
+                frequencyPanel.clearTable();
+
                 JFileChooser fileChooser = new JFileChooser();
                 int returnValue = fileChooser.showOpenDialog(mFrame);
                 if(returnValue == JFileChooser.APPROVE_OPTION){
                     File selectedFile = fileChooser.getSelectedFile();
-                    // implement check if txt file
+
+                    // Perform Frequency Panel Functions on selected file
                     System.out.println("File Selected: " + selectedFile.getAbsolutePath());
+                    frequencyPanel.createFrequencyCount(readFile(selectedFile));
+                    frequencyPanel.frequencyCountSortedByFreq(readFile(selectedFile));
                 } else {
                     System.out.println("No file selected.");
                 }
 
-                JOptionPane.showMessageDialog(null,"TESTING");
+                // Notify user
+                JOptionPane.showMessageDialog(null,"File loaded.");
 
             }
         });
 
-
-        File txtFile = new File("src/characters.txt");
-        frequencyPanel.createFrequencyCount(readFile(txtFile));
-        frequencyPanel.frequencyCountSortedByFreq(readFile(txtFile));
+        // Testing Text file
+        //File txtFile = new File("src/characters.txt");
+        //frequencyPanel.createFrequencyCount(readFile(selectedFile));
+        //frequencyPanel.frequencyCountSortedByFreq(readFile(selectedFile));
 
         // Final Visual Placements
         TabPanelHolder tabHolder = new TabPanelHolder();
         tabHolder.add("Home",homePanel);
         tabHolder.add("Freq",frequencyPanel);
-        tabHolder.add("Input Study",studyPanel1);
-        tabHolder.add("Table Study", tableStudyPanel);
         mFrame.add(tabHolder);
         mFrame.revalidate();
         mFrame.repaint();
@@ -96,7 +94,6 @@ public class Main {
         }
         return freqCount;
     }
-
     /*public static TreeMap<CCharacter, String> processToCharacterMap(File file){
         TreeMap<CCharacter, String> characterMap = new TreeMap<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {

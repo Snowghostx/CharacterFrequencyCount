@@ -55,6 +55,9 @@ public class FrequencyPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
+    public void clearTable() {
+        this.model.setRowCount(0);
+    }
     public void createFrequencyCount(TreeMap<Character,Integer> freqCount){
         // this just makes it so a button does it but tbh the contents will do it automatically outside of action
         // also it's sorted by character cuz it's a treemap now not a regular hashmap

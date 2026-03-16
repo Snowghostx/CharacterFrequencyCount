@@ -1,4 +1,0 @@
-Roadmap
-* Toggleable "meaning" input for input study panel
-    - have it as a menu item that ticks an input field on,
-    - have a boolean that if this second input field is on, require an answer (so that it doesnt break the only pinyin)
