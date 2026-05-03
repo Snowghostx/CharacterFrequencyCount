@@ -9,8 +9,9 @@ import java.util.*;
 /**
  * Chinese Character Frequency Count
  *
- * Given a text with a list of characters, (usually i'm taking a .srt file and putting it in a txt file)
- * it will count the frequency of each character in the list.
+ * Given a .txt or .srt file even, a visual table will be generated of the character and how many times it appears in the file.
+ * This can give a user looking to study characters based on their frequency, this is a visual aid that provides a direction in what
+ * they should prioritize in their studies.
  */
 public class Main {
     public static void main(String[] args) {
@@ -23,29 +24,31 @@ public class Main {
         // Set Menu Action
         mFrame.makeMenuItemWithAction("Select Vocab List", new ActionListener(){
             @Override public void actionPerformed(ActionEvent e) {
-                // Reset visual table
-                frequencyPanel.clearTable();
+                File selectedFile; // Create File Object
+                frequencyPanel.clearTable(); // Reset visual table
 
                 JFileChooser fileChooser = new JFileChooser();
                 int returnValue = fileChooser.showOpenDialog(mFrame);
                 if(returnValue == JFileChooser.APPROVE_OPTION){
-                    File selectedFile = fileChooser.getSelectedFile();
+                    selectedFile = fileChooser.getSelectedFile();
 
                     // Perform Frequency Panel Functions on selected file
                     System.out.println("File Selected: " + selectedFile.getAbsolutePath());
                     frequencyPanel.createFrequencyCount(readFile(selectedFile));
-                    frequencyPanel.frequencyCountSortedByFreq(readFile(selectedFile));
-                } else {
-                    System.out.println("No file selected.");
-                }
+                    //frequencyPanel.frequencyCountSortedByFreq(readFile(selectedFile));
 
-                // Notify user
-                JOptionPane.showMessageDialog(null,"File loaded.");
+                    // Notify user of file status
+                    JOptionPane.showMessageDialog(null,"File loaded: " + selectedFile.getName());
+                } else {
+                    // Notify user of file status
+                    System.out.println("No file selected.");
+                    JOptionPane.showMessageDialog(null,"No File Loaded.");
+                }
 
             }
         });
 
-        // Testing Text file
+        // Testing Text File
         //File txtFile = new File("src/characters.txt");
         //frequencyPanel.createFrequencyCount(readFile(selectedFile));
         //frequencyPanel.frequencyCountSortedByFreq(readFile(selectedFile));
@@ -66,8 +69,16 @@ public class Main {
 
     }
 
-    /** This is where we actually process the text file into a map.
+    /**
+     * This function is meant to be used after a file is successfully selected.
+     * Taking in a file, the function will create a TreeMap with the key type Character and value type integer. It will then read the file, processing each line
+     * by removing everything that is not a chinese character with empty string. It will then process this line of characters to an array, followed up by looping
+     * through the array. Each iteration will check if the character is already in the TreeMap, if it is, it will increase the value, if it isn't it will start
+     * the count at 1.
      *
+     * Where n is the amount of characters in the entire text file. This cannot be more optimized because every character must be read.
+     * @param file a .txt, or .srt file
+     * @return TreeMap of characters (key) and their total appearances (value).
      */
     public static TreeMap<Character,Integer> readFile(File file){
         TreeMap<Character, Integer> freqCount = new TreeMap<>();
